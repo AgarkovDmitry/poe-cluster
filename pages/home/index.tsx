@@ -6,7 +6,8 @@ import Block from './components/block/Block'
 
 import styles from './styles.module.css'
 
-import { clusterTypes, clusterEffects, passives } from '../../data/index'
+import { clusterTypes } from '../../data/data'
+import { getClusterEffectsByType, getPassivesByEffect } from '../../data/helpers'
 
 export default function Home() {
   const [selectedType, setSelectedType] = useState('large')
@@ -48,8 +49,7 @@ export default function Home() {
 
         <div className={styles.grid}>
           {
-            clusterEffects
-              .filter(effect => effect.clusterType === selectedType)
+            getClusterEffectsByType(selectedType)
               .map(effect => (
                 <Block
                   className={styles.effectBlock}
@@ -64,8 +64,7 @@ export default function Home() {
         </div>
 
         <div className={styles.grid}>
-          {passives
-            .filter(passive => passive.effects.includes(selectedEffect))
+          {getPassivesByEffect(selectedEffect)
             .map(passive => (
               <Block className={classNames(styles.passiveBlock, styles.grid)}>
                 <div className={styles.passiveGrid}>

@@ -101,4 +101,15 @@ export const passives = [
     img: 'https://web.poecdn.com/public/news/2020-03-10/passives/IncreasedAttackDamageNotable.png',
     id: '277'
   },
+  {
+    description: [
+      '30% increased Elemental Damage with Attack Skills',
+      '10% chance to Freeze, Shock and Ignite',
+      '15% increased Effect of Non-Damaging Ailments',
+    ],
+    title: 'Calamitious',
+    effects: ['170'],
+    img: 'https://web.poecdn.com/public/news/2020-03-10/passives/IncreasedAttackDamageNotable.png',
+    id: '277'
+  },
 ]
