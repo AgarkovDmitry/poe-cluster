@@ -20,7 +20,11 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
         
-  unit tests:
+  unit_tests:
+    docker:
+      - image: circleci/node:12
+
+    steps:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
