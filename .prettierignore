@@ -36,3 +36,7 @@ yarn-error.log*
 # circleci
 .circleci
 *.yml
+
+.gitignore
+.prettierignore
+yarn.lock

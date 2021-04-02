@@ -1,17 +1,16 @@
-
 export const clusterTypes = [
   {
     id: 'large',
-    img: 'https://web.poecdn.com/image/Art/2DItems/Jewels/NewGemBase3.png?w=1&h=1&scale=1'
+    img: 'https://web.poecdn.com/image/Art/2DItems/Jewels/NewGemBase3.png?w=1&h=1&scale=1',
   },
   {
     id: 'medium',
-    img: 'https://web.poecdn.com/image/Art/2DItems/Jewels/NewGemBase2.png?w=1&h=1&scale=1'
+    img: 'https://web.poecdn.com/image/Art/2DItems/Jewels/NewGemBase2.png?w=1&h=1&scale=1',
   },
   {
     id: 'small',
-    img: 'https://web.poecdn.com/image/Art/2DItems/Jewels/NewGemBase1.png?w=1&h=1&scale=1'
-  }
+    img: 'https://web.poecdn.com/image/Art/2DItems/Jewels/NewGemBase1.png?w=1&h=1&scale=1',
+  },
 ]
 
 export const clusterEffects = [
@@ -19,7 +18,11 @@ export const clusterEffects = [
   { text: 'Armour', clusterType: 'small', id: '' },
   { text: 'Attack Damage', clusterType: 'large', id: '169' },
   { text: 'Attack Damage while Dual Wielding', clusterType: 'large', id: '' },
-  { text: 'Attack Damage while holding a Shield', clusterType: 'large', id: '' },
+  {
+    text: 'Attack Damage while holding a Shield',
+    clusterType: 'large',
+    id: '',
+  },
   { text: 'Aura Effect', clusterType: 'medium', id: '' },
   { text: 'Axe and Sword Damage', clusterType: 'large', id: '' },
   { text: 'Bow Damage', clusterType: 'large', id: '' },
@@ -39,7 +42,11 @@ export const clusterEffects = [
   { text: 'Dagger and Claw Damage', clusterType: 'large', id: '' },
   { text: 'Damage over Time Multiplier', clusterType: 'medium', id: '' },
   { text: 'Damage while you have a Herald', clusterType: 'medium', id: '' },
-  { text: 'Damage with Two Handed Melee Weapons', clusterType: 'large', id: '' },
+  {
+    text: 'Damage with Two Handed Melee Weapons',
+    clusterType: 'large',
+    id: '',
+  },
   { text: 'Effect of Non-Damaging Ailments', clusterType: 'medium', id: '' },
   { text: 'Elemental Damage', clusterType: 'large', id: '' },
   { text: 'Energy Shield', clusterType: 'small', id: '' },
@@ -56,10 +63,18 @@ export const clusterEffects = [
   { text: 'Mace and Staff Damage', clusterType: 'large', id: '' },
   { text: 'Mana', clusterType: 'small', id: '' },
   { text: 'Minion Damage', clusterType: 'large', id: '' },
-  { text: 'Minion Damage while you have a Herald', clusterType: 'medium', id: '' },
+  {
+    text: 'Minion Damage while you have a Herald',
+    clusterType: 'medium',
+    id: '',
+  },
   { text: 'Minion Life', clusterType: 'medium', id: '' },
   { text: 'Physical Damage', clusterType: 'large', id: '' },
-  { text: 'Physical Damage over Time Multiplier', clusterType: 'medium', id: '' },
+  {
+    text: 'Physical Damage over Time Multiplier',
+    clusterType: 'medium',
+    id: '',
+  },
   { text: 'Projectile Damage', clusterType: 'medium', id: '' },
   { text: 'Spell Damage', clusterType: 'large', id: '' },
   { text: 'Totem Damage', clusterType: 'medium', id: '' },
@@ -76,8 +91,9 @@ export const passives = [
     ],
     title: 'Calamitious',
     effects: ['169'],
-    img: 'https://web.poecdn.com/public/news/2020-03-10/passives/IncreasedAttackDamageNotable.png',
-    id: '277'
+    img:
+      'https://web.poecdn.com/public/news/2020-03-10/passives/IncreasedAttackDamageNotable.png',
+    id: '277',
   },
   {
     description: [
@@ -87,8 +103,9 @@ export const passives = [
     ],
     title: 'Calamitious',
     effects: ['169'],
-    img: 'https://web.poecdn.com/public/news/2020-03-10/passives/IncreasedAttackDamageNotable.png',
-    id: '277'
+    img:
+      'https://web.poecdn.com/public/news/2020-03-10/passives/IncreasedAttackDamageNotable.png',
+    id: '277',
   },
   {
     description: [
@@ -98,8 +115,9 @@ export const passives = [
     ],
     title: 'Calamitious',
     effects: ['169'],
-    img: 'https://web.poecdn.com/public/news/2020-03-10/passives/IncreasedAttackDamageNotable.png',
-    id: '277'
+    img:
+      'https://web.poecdn.com/public/news/2020-03-10/passives/IncreasedAttackDamageNotable.png',
+    id: '277',
   },
   {
     description: [
@@ -109,7 +127,8 @@ export const passives = [
     ],
     title: 'Calamitious',
     effects: ['170'],
-    img: 'https://web.poecdn.com/public/news/2020-03-10/passives/IncreasedAttackDamageNotable.png',
-    id: '277'
+    img:
+      'https://web.poecdn.com/public/news/2020-03-10/passives/IncreasedAttackDamageNotable.png',
+    id: '277',
   },
 ]
