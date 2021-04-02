@@ -1,65 +1,99 @@
+import { useState } from 'react'
 import Head from 'next/head'
+import classNames from 'classnames'
+
+import Block from './components/block/Block'
+
 import styles from './styles.module.css'
 
+import { clusterTypes, clusterEffects, passives } from '../../data/index'
+
 export default function Home() {
+  const [selectedType, setSelectedType] = useState('large')
+  const [selectedEffect, setSelectedEffect] = useState('169')
+
+  const handleSelectType = (type: string) => () => {
+    setSelectedType(type)
+  }
+
+  const handleEffectType = (effect: string) => () => {
+    setSelectedEffect(effect)
+  }
+
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Poe clusters</title>
+        <link rel='icon' href='/favicon.ico' />
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+        <h2 className={styles.title}>
+          Cluster jewels
+        </h2>
+        <div className={styles.clusterGrid}>
+          {
+            clusterTypes.map(type => (
+              <Block
+                className={styles.clusterBlock}
+                key={type.id}
+                selected={selectedType === type.id}
+                onClick={handleSelectType(type.id)}
+              >
+                <img src={type.img} />
+              </Block>
+            ))
+          }
+        </div>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+          {
+            clusterEffects
+              .filter(effect => effect.clusterType === selectedType)
+              .map(effect => (
+                <Block
+                  className={styles.effectBlock}
+                  key={effect.text}
+                  selected={selectedEffect === effect.id}
+                  onClick={handleEffectType(effect.id)}
+                >
+                  {effect.text}
+                </Block>
+              ))
+          }
+        </div>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div className={styles.grid}>
+          {passives
+            .filter(passive => passive.effects.includes(selectedEffect))
+            .map(passive => (
+              <Block className={classNames(styles.passiveBlock, styles.grid)}>
+                <div className={styles.passiveGrid}>
+                  <img src={passive.img} className={styles.passiveImage} />
+                  <div className={styles.passiveTitle}>
+                    {passive.title}
+                  </div>
+                </div>
+                <div className={styles.passiveWrap}>
+                  <div className={styles.passiveDescrition}>
+                    {passive.description.map(line => (
+                      <div key={line}>
+                        {line}
+                      </div>
+                    ))}
+                  </div>
+                  <div className={styles.passiveNote}>
+                    {passive.description.map(line => (
+                      <div key={line}>
+                        {line}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </Block>
+            ))}
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
     </div>
   )
 }
