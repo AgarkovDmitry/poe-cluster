@@ -5,17 +5,17 @@ workflows:
   node-tests:
     jobs:
       - restore_cache:
-        name: Restore Yarn Package Cache
-        keys:
-          - yarn-packages-{{ checksum "yarn.lock" }}
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
-        name: Install Dependencies
-        command: yarn install --immutable
+          name: Install Dependencies
+          command: yarn install --immutable
       - save_cache:
-        name: Save Yarn Package Cache
-        key: yarn-packages-{{ checksum "yarn.lock" }}
-        paths:
-          - ~/.cache/yarn
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
       - unit_tests:
-        name: Jest Unit Test
-        command: node/test
+          name: Jest Unit Test
+          command: node/test
