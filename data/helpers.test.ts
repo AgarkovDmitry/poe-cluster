@@ -1,7 +1,6 @@
 import { getClusterEffectsByType, getPassivesByEffect } from './helpers'
 import { clusterEffects, passives } from './data'
 
-
 describe('data/helpers', () => {
   describe('getClusterEffectsByType', () => {
     it('Should return empty array if type is not valid', () => {
@@ -14,7 +13,9 @@ describe('data/helpers', () => {
       const type = 'large'
 
       expect(getClusterEffectsByType(type).length).not.toEqual(0)
-      expect(getClusterEffectsByType(type).length).toBeLessThan(clusterEffects.length)
+      expect(getClusterEffectsByType(type).length).toBeLessThan(
+        clusterEffects.length
+      )
     })
   })
 

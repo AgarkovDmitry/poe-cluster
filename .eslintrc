@@ -3,17 +3,13 @@
     "react-app",
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:jsx-a11y/recommended"
+    "plugin:jsx-a11y/recommended",
+    "prettier"
   ],
-  "plugins": [
-    "react",
-    "jsx-a11y"
-  ],
+  "plugins": ["react", "jsx-a11y"],
   "overrides": [
     {
-      "files": [
-        "**/*.ts?(x)"
-      ],
+      "files": ["**/*.ts?(x)"],
       "rules": {
         "react/jsx-uses-react": 0,
         "react/react-in-jsx-scope": 0,
@@ -24,26 +20,11 @@
         "react/jsx-pascal-case": 1,
         "react/jsx-props-no-multi-spaces": 1,
         "react/jsx-one-expression-per-line": 1,
-        "react/jsx-curly-spacing": [
-          1,
-          "never"
-        ],
-        "react/jsx-curly-newline": [
-          1,
-          "consistent"
-        ],
-        "react/jsx-curly-brace-presence": [
-          1,
-          "never"
-        ],
-        "react/jsx-equals-spacing": [
-          1,
-          "never"
-        ],
-        "react/jsx-indent-props": [
-          1,
-          2
-        ],
+        "react/jsx-curly-spacing": [1, "never"],
+        "react/jsx-curly-newline": [1, "consistent"],
+        "react/jsx-curly-brace-presence": [1, "never"],
+        "react/jsx-equals-spacing": [1, "never"],
+        "react/jsx-indent-props": [1, 2],
         "react/jsx-tag-spacing": [
           1,
           {
@@ -54,19 +35,10 @@
           }
         ],
         "react-hooks/exhaustive-deps": "off",
-        "jsx-quotes": [
-          1,
-          "prefer-single"
-        ],
+        "jsx-quotes": [1, "prefer-single"],
         "no-unused-vars": 1,
-        "quotes": [
-          1,
-          "single"
-        ],
-        "semi": [
-          1,
-          "never"
-        ]
+        "quotes": [1, "single"],
+        "semi": [1, "never"]
       }
     }
   ]
