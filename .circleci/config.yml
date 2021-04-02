@@ -34,6 +34,16 @@ jobs:
           at: .
 
       - run: yarn test
+        
+  prettier_check:
+    docker:
+      - image: circleci/node:12
+
+    steps:
+      - attach_workspace:
+          at: .
+
+      - run: yarn prettier-check
 
 workflows:
   version: 2
@@ -41,5 +51,8 @@ workflows:
     jobs:
       - install
       - unit_tests: 
+          requires:
+              - install
+      - prettier_check: 
           requires:
               - install
