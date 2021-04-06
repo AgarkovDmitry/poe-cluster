@@ -8,20 +8,21 @@ import styles from './styles.module.css'
 
 import { clusterTypes } from '../../data/data'
 import {
-  getClusterEffectsByType,
-  getPassivesByEffect,
+  getClusterBasesByType,
+  getNotablesByBase,
 } from '../../data/helpers'
 
 export default function Home() {
-  const [selectedType, setSelectedType] = useState('large')
-  const [selectedEffect, setSelectedEffect] = useState('169')
+  const [selectedType, setSelectedType] = useState('69')
+  const [selectedBase, setSelectedBase] = useState('')
 
   const handleSelectType = (type: string) => () => {
     setSelectedType(type)
+    setSelectedBase('')
   }
 
   const handleEffectType = (effect: string) => () => {
-    setSelectedEffect(effect)
+    setSelectedBase(effect)
   }
 
   return (
@@ -47,33 +48,35 @@ export default function Home() {
         </div>
 
         <div className={styles.grid}>
-          {getClusterEffectsByType(selectedType).map((effect) => (
+          {getClusterBasesByType(selectedType).map((base) => (
             <Block
               className={styles.effectBlock}
-              key={effect.text}
-              selected={selectedEffect === effect.id}
-              onClick={handleEffectType(effect.id)}
+              key={base.id_base}
+              selected={selectedBase === base.id_base}
+              onClick={handleEffectType(base.id_base)}
             >
-              {effect.text}
+              {base.name_base}
             </Block>
           ))}
         </div>
 
         <div className={styles.grid}>
-          {getPassivesByEffect(selectedEffect).map((passive) => (
-            <Block className={classNames(styles.passiveBlock, styles.grid)}>
+          {getNotablesByBase(selectedBase).map((notable) => (
+            <Block className={classNames(styles.passiveBlock, styles.grid)} key={notable.id_modifier}>
               <div className={styles.passiveGrid}>
-                <img src={passive.img} className={styles.passiveImage} />
-                <div className={styles.passiveTitle}>{passive.title}</div>
+                <img src={notable.img} className={styles.passiveImage} />
+                <div className={styles.passiveTitle}>{notable.name} ({notable.id_modifier})</div>
               </div>
               <div className={styles.passiveWrap}>
                 <div className={styles.passiveDescrition}>
-                  {passive.description.map((line) => (
+                  {notable.description?.map((line) => (
                     <div key={line}>{line}</div>
                   ))}
                 </div>
+              </div>
+              <div className={styles.notesWrap}>
                 <div className={styles.passiveNote}>
-                  {passive.description.map((line) => (
+                  {notable.notes?.map((line) => (
                     <div key={line}>{line}</div>
                   ))}
                 </div>
