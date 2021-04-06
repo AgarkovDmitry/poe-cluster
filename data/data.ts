@@ -35,7 +35,6 @@ export const computedNotables = rawNotableSkills.map(skill => {
   }
 })
 
-console.log(computedNotables.map(n => ({ name: n.name, id: n.id_modifier })))
 
 // export const passives = [
 //   {
