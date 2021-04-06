@@ -1,27 +1,38 @@
 import rawData from './raw.json'
-import { notableImages } from './notable-images'
+import { notableImages, baseImages } from './notable-images'
 
-export const rawClusterBases = rawData.bases.seq.filter(base => base.id_bgroup === '12')
+export const rawClusterBases = rawData.bases.seq.filter(
+  (base) => base.id_bgroup === '12'
+)
 
-export const rawNotableSkills = rawData.modifiers.seq.filter(mod => mod.notable === '1')
+export const rawNotableSkills = rawData.modifiers.seq.filter(
+  (mod) => mod.notable === '1'
+)
 
 export const clusterTypes = [
   {
     id: '69',
-    img: 'https://web.poecdn.com/image/Art/2DItems/Jewels/NewGemBase3.png?w=1&h=1&scale=1',
+    img:
+      'https://web.poecdn.com/image/Art/2DItems/Jewels/NewGemBase3.png?w=1&h=1&scale=1',
   },
   {
     id: '71',
-    img: 'https://web.poecdn.com/image/Art/2DItems/Jewels/NewGemBase2.png?w=1&h=1&scale=1',
+    img:
+      'https://web.poecdn.com/image/Art/2DItems/Jewels/NewGemBase2.png?w=1&h=1&scale=1',
   },
   {
     id: '70',
-    img: 'https://web.poecdn.com/image/Art/2DItems/Jewels/NewGemBase1.png?w=1&h=1&scale=1',
+    img:
+      'https://web.poecdn.com/image/Art/2DItems/Jewels/NewGemBase1.png?w=1&h=1&scale=1',
   },
 ]
 
+export const computedClusterBases = rawClusterBases.map((base) => ({
+  ...base,
+  img: baseImages[base.id_base],
+}))
 
-export const computedNotables = rawNotableSkills.map(skill => {
+export const computedNotables = rawNotableSkills.map((skill) => {
   const description = JSON.parse(rawData.mdefs[skill.id_modifier])
   const tiers = rawData.tiers[skill.id_modifier]
 
@@ -31,10 +42,9 @@ export const computedNotables = rawNotableSkills.map(skill => {
     tiers,
     img: notableImages[skill.id_modifier],
     name: skill.name_modifier.split('1 Added Passive Skill is ')[1],
-    ...skill
+    ...skill,
   }
 })
-
 
 // export const passives = [
 //   {

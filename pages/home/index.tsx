@@ -7,10 +7,7 @@ import Block from './components/block/Block'
 import styles from './styles.module.css'
 
 import { clusterTypes } from '../../data/data'
-import {
-  getClusterBasesByType,
-  getNotablesByBase,
-} from '../../data/helpers'
+import { getClusterBasesByType, getNotablesByBase } from '../../data/helpers'
 
 export default function Home() {
   const [selectedType, setSelectedType] = useState('69')
@@ -55,17 +52,25 @@ export default function Home() {
               selected={selectedBase === base.id_base}
               onClick={handleEffectType(base.id_base)}
             >
-              {base.name_base}
+              <div className={styles.passiveGrid}>
+                <img className={styles.baseImage} src={base.img} />
+                <div className={styles.baseTitle}>{base.name_base}</div>
+              </div>
             </Block>
           ))}
         </div>
 
         <div className={styles.grid}>
           {getNotablesByBase(selectedBase).map((notable) => (
-            <Block className={classNames(styles.passiveBlock, styles.grid)} key={notable.id_modifier}>
+            <Block
+              className={classNames(styles.passiveBlock, styles.grid)}
+              key={notable.id_modifier}
+            >
               <div className={styles.passiveGrid}>
                 <img src={notable.img} className={styles.passiveImage} />
-                <div className={styles.passiveTitle}>{notable.name} ({notable.id_modifier})</div>
+                <div className={styles.passiveTitle}>
+                  {notable.name} ({notable.id_modifier})
+                </div>
               </div>
               <div className={styles.passiveWrap}>
                 <div className={styles.passiveDescrition}>
