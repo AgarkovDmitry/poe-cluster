@@ -4,4 +4,4 @@ export const getClusterBasesByType = (type: string) =>
   computedClusterBases.filter((base) => base.master_base === type)
 
 export const getNotablesByBase = (base: string) =>
-  computedNotables.filter((notable) => !!notable.tiers[base])
+  computedNotables.filter((notable) => !base || !!notable.tiers[base])
