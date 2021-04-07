@@ -68,7 +68,7 @@
 
 .passiveBlock {
   flex-basis: calc(33% - 0.6rem);
-  margin: 0.3rem;
+  margin: 0 0.3rem 0.3rem 0;
   padding: 0.5rem;
   flex-direction: column;
 }
