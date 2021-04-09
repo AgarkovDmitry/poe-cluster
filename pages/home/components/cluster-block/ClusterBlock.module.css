@@ -1,0 +1,15 @@
+
+.block {
+  margin-right: 1px;
+  margin-bottom: 1px;
+  padding: 0.25rem;
+  border: 1px solid transparent;
+}
+
+.grid {
+  min-height: 2rem;
+}
+
+.title {
+  margin: auto 0.5rem;
+}
