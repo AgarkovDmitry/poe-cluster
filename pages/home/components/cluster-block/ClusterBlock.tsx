@@ -9,28 +9,28 @@ import styles from './ClusterBlock.module.css'
 interface Props {
   onClick: () => void
   selected: boolean
+  active?: boolean
   img?: string
   text: string
 }
 
-export default function ClusterBlock({ selected, onClick, img, text }: Props) {
+export default function ClusterBlock({
+  selected,
+  active,
+  onClick,
+  img,
+  text,
+}: Props) {
   return (
     <Block
       className={styles.block}
       selected={selected}
+      active={active}
       onClick={onClick}
     >
       <Grid className={styles.grid}>
-        {
-          img && (
-            <Image src={img} size='medium' />
-          )
-        }
-        <Text
-          fontSize='medium'
-          className={styles.title}
-          color='title'
-        >
+        {img && <Image src={img} size='medium' />}
+        <Text fontSize='medium' className={styles.title} color='title'>
           {text}
         </Text>
       </Grid>
