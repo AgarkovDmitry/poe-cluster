@@ -12,6 +12,8 @@ interface Props {
   img: string
   description?: string[]
   notes?: string[]
+  onClick: () => void
+  selected: boolean
 }
 
 export default function NotableBlock({
@@ -20,9 +22,11 @@ export default function NotableBlock({
   img,
   description,
   notes,
+  onClick,
+  selected,
 }: Props) {
   return (
-    <Block className={styles.block}>
+    <Block className={styles.block} onClick={onClick} selected={selected}>
       <Grid>
         <Grid>
           <Image src={img} size='big' />

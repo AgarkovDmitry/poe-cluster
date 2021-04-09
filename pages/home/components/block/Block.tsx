@@ -5,6 +5,7 @@ import styles from './Block.module.css'
 interface BlockProps {
   className?: string
   selected?: boolean
+  active?: boolean
   onClick?: () => void
   children?: unknown
 }
@@ -14,6 +15,7 @@ export default function Block({
   onClick,
   className,
   selected,
+  active,
 }: BlockProps) {
   const clickable = !!onClick
 
@@ -22,6 +24,7 @@ export default function Block({
       className={classNames(
         styles.block,
         {
+          [styles.active]: active,
           [styles.selected]: selected,
           [styles.clickable]: clickable,
         },
