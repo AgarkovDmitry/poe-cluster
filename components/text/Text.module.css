@@ -1,0 +1,23 @@
+.big {
+  font-size: 0.95rem;
+}
+
+.medium {
+  font-size: 0.85rem;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.title {
+  color: #e9cf9f;
+}
+
+.hint {
+  color: #808080;
+}

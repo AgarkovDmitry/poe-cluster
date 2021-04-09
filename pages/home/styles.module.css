@@ -9,113 +9,35 @@
 }
 
 .main {
-  padding: 3rem 0;
+  padding: 4rem 0;
   max-width: 1280px;
   width: 100%;
 }
 
-.title {
-  color: #e9cf9f;
-}
-
 .grid {
-  display: flex;
-  flex-wrap: wrap;
   margin-top: 1rem;
 }
 
-.clusterGrid {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 1rem;
+.basesBlock {
+  flex-basis: calc(100% / 3);
 }
 
-.clusterBlock {
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
-  color: inherit;
-  border-radius: 50%;
-
-  width: 4rem;
-  height: 4rem;
-}
-
-.effectBlock {
-  margin-right: 1px;
-  margin-bottom: 1px;
-  padding: 0.3rem;
-  border: 1px solid transparent;
-  color: #e9cf9f;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.baseImage {
-  width: 2rem;
-  height: 2rem;
-}
-
-.baseTitle {
-  margin: auto;
-  margin-left: 0.3rem;
-}
-
-.passiveGrid {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.passiveBlock {
-  flex-basis: calc(33% - 0.6rem);
-  margin: 0 0.3rem 0.3rem 0;
-  padding: 0.5rem;
-  flex-direction: column;
-}
-
-.passiveImage {
-  width: 4rem;
-  height: 4rem;
-}
-
-.passiveWrap {
-  margin-top: 0.5rem;
-}
-
-.passiveTitle {
-  color: #e9cf9f;
-  font-weight: bold;
-  margin: auto;
-  margin-left: 1rem;
-}
-
-.passiveDescrition {
-  font-size: 0.85rem;
-}
-
-.notesWrap {
-  margin-top: auto;
-}
-
-.passiveNote {
-  font-size: 0.85rem;
-  margin-top: 0.5rem;
-  color: #808080;
-  font-style: italic;
+.notablesBlock {
+  flex-basis: calc(100% * 2 / 3);
 }
 
 @media (max-width: 600px) {
-  .grid {
+  .mobileGrid {
     width: 100%;
     flex-direction: column;
+    margin-top: 1rem;
+  }
+  
+  .notablesBlock {
+    margin-top: 1rem;
   }
 
   .main {
     padding: 0;
-  }
-
-  .passiveBlock {
-    flex-basis: 100%;
-    margin: 0.3rem 0;
   }
 }

@@ -12,16 +12,19 @@ export const rawNotableSkills = rawData.modifiers.seq.filter(
 export const clusterTypes = [
   {
     id: '69',
+    text: 'Large Cluster',
     img:
       'https://web.poecdn.com/image/Art/2DItems/Jewels/NewGemBase3.png?w=1&h=1&scale=1',
   },
   {
     id: '71',
+    text: 'Medium Cluster',
     img:
       'https://web.poecdn.com/image/Art/2DItems/Jewels/NewGemBase2.png?w=1&h=1&scale=1',
   },
   {
     id: '70',
+    text: 'Small Cluster',
     img:
       'https://web.poecdn.com/image/Art/2DItems/Jewels/NewGemBase1.png?w=1&h=1&scale=1',
   },
