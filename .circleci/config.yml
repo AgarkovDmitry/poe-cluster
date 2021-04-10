@@ -25,7 +25,7 @@ jobs:
           paths:
             - ""
         
-  unit_tests:
+  Jest:
     docker:
       - image: circleci/node:12
 
@@ -35,7 +35,7 @@ jobs:
 
       - run: yarn test
         
-  prettier_check:
+  Prettier:
     docker:
       - image: circleci/node:12
 
@@ -45,7 +45,7 @@ jobs:
 
       - run: yarn prettier-check
         
-  ts_check:
+  Typescript:
     docker:
       - image: circleci/node:12
 
@@ -60,12 +60,12 @@ workflows:
   build_and_test:
     jobs:
       - install
-      - unit_tests: 
+      - Jest: 
           requires:
               - install
-      - prettier_check: 
+      - Prettier: 
           requires:
               - install
-      - ts_check: 
+      - Typescript: 
           requires:
               - install
