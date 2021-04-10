@@ -44,6 +44,16 @@ jobs:
           at: .
 
       - run: yarn prettier-check
+        
+  type_check:
+    docker:
+      - image: circleci/node:12
+
+    steps:
+      - attach_workspace:
+          at: .
+
+      - run: yarn ts-check
 
 workflows:
   version: 2
@@ -54,5 +64,8 @@ workflows:
           requires:
               - install
       - prettier_check: 
+          requires:
+              - install
+      - ts_check: 
           requires:
               - install
