@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import Head from 'next/head'
+import { useDebounce } from 'use-debounce'
 
-import { clusterTypes } from 'data/data'
+import { clusterTypes, computedNotables } from 'data/data'
 import {
   getClusterBasesByType,
   getNotablesByBase,
+  getNotablesByFilter,
   getIsClusterBaseActive,
   getIsClusterTypeActive,
 } from 'data/helpers'
@@ -20,6 +22,8 @@ export default function Home() {
   const [selectedType, setSelectedType] = useState('69')
   const [selectedBase, setSelectedBase] = useState('')
   const [selectedNotable, setSelectedNotable] = useState('')
+  const [filter, setFilter] = useState('')
+  const [filterValue] = useDebounce(filter, 350)
 
   const handleSelectType = (type: string) => () => {
     setSelectedType(type)
@@ -36,6 +40,10 @@ export default function Home() {
 
   const handleSelectNotable = (notable: string) => () => {
     setSelectedNotable(selectedNotable === notable ? '' : notable)
+  }
+
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilter(e.target.value)
   }
 
   return (
@@ -75,19 +83,28 @@ export default function Home() {
           </div>
 
           <div className={styles.notablesBlock}>
-            <Grid>
-              {getNotablesByBase(selectedBase).map((notable) => (
-                <NotableBlock
-                key={notable.id_modifier}
-                  id={notable.id_modifier}
-                  name={notable.name}
-                  img={notable.img}
-                  description={notable.description}
-                  notes={notable.notes}
-                  onClick={handleSelectNotable(notable.id_modifier)}
-                  selected={selectedNotable === notable.id_modifier}
-                />
-              ))}
+            <input
+              className={styles.searchInput}
+              placeholder='Search Notables...'
+              value={filter}
+              onChange={handleFilterChange}
+            />
+
+            <Grid className={styles.grid}>
+              {
+                getNotablesByBase(selectedBase)(
+                  getNotablesByFilter(filterValue)(
+                    computedNotables
+                  )
+                )
+                .map((notable) => (
+                  <NotableBlock
+                    key={notable.id}
+                    notable={notable}
+                    onClick={handleSelectNotable(notable.id)}
+                    selected={selectedNotable === notable.id}
+                  />
+                ))}
             </Grid>
           </div>
         </Grid>

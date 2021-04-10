@@ -100,9 +100,6 @@ export const images = {
 }
 
 export const baseImages = {
-  '69': '',
-  '70': '',
-  '71': '',
   '125': images.IncreasedMaximumLifeNotable,
   '126': images.EnergyShieldNotable,
   '127': images.MaxManaNotable,
