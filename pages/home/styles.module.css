@@ -26,13 +26,29 @@
   flex-basis: calc(100% * 2 / 3);
 }
 
+.searchInput {
+  width: calc(100% - 0.25rem);
+  min-height: 2.6rem;
+  background-color: #343434;
+  border: 1px solid transparent;
+  border-radius: 0;
+  color: #e9cf9f;
+  padding-left: 1rem;
+}
+
+.searchInput:focus {
+  outline-color: currentColor;
+  outline-width: 1px;
+  outline-style: solid;
+}
+
 @media (max-width: 600px) {
   .mobileGrid {
     width: 100%;
     flex-direction: column;
     margin-top: 1rem;
   }
-  
+
   .notablesBlock {
     margin-top: 1rem;
   }

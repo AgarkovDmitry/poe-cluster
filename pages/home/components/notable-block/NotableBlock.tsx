@@ -2,32 +2,26 @@ import Grid from 'components/grid/Grid'
 import Text from 'components/text/Text'
 import Image from 'components/image/Image'
 
+import { Notable } from 'data/data'
+
 import Block from '../block/Block'
 
 import styles from './NotableBlock.module.css'
 
 interface Props {
-  id: string
-  name: string
-  img: string
-  description?: string[]
-  notes?: string[]
+  notable: Notable
   onClick: () => void
   selected: boolean
 }
 
 export default function NotableBlock({
-  id,
-  name,
-  img,
-  description,
-  notes,
+  notable: { name, img, description, notes },
   onClick,
   selected,
 }: Props) {
   return (
     <Block className={styles.block} onClick={onClick} selected={selected}>
-      <Grid>
+      <div>
         <Grid>
           <Image src={img} size='big' />
           <Text
@@ -36,7 +30,7 @@ export default function NotableBlock({
             bold={true}
             fontSize='big'
           >
-            {name} ({id})
+            {name}
           </Text>
         </Grid>
         <div className={styles.subsection}>
@@ -53,7 +47,7 @@ export default function NotableBlock({
             </Text>
           ))}
         </div>
-      </Grid>
+      </div>
     </Block>
   )
 }
