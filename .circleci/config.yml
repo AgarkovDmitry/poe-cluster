@@ -45,7 +45,7 @@ jobs:
 
       - run: yarn prettier-check
         
-  type_check:
+  ts_check:
     docker:
       - image: circleci/node:12
 
