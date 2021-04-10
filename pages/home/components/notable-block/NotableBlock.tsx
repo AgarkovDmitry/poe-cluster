@@ -2,20 +2,25 @@ import Grid from 'components/grid/Grid'
 import Text from 'components/text/Text'
 import Image from 'components/image/Image'
 
-import { Notable } from 'data/data'
-
 import Block from '../block/Block'
 
 import styles from './NotableBlock.module.css'
 
 interface Props {
-  notable: Notable
+  id: string
+  name: string
+  img: string
+  description?: string[]
+  notes?: string[]
   onClick: () => void
   selected: boolean
 }
 
 export default function NotableBlock({
-  notable: { name, img, description, notes },
+  name,
+  img,
+  description,
+  notes,
   onClick,
   selected,
 }: Props) {

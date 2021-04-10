@@ -91,20 +91,20 @@ export default function Home() {
             />
 
             <Grid className={styles.grid}>
-              {
-                getNotablesByBase(selectedBase)(
-                  getNotablesByFilter(filterValue)(
-                    computedNotables
-                  )
-                )
-                .map((notable) => (
-                  <NotableBlock
-                    key={notable.id}
-                    notable={notable}
-                    onClick={handleSelectNotable(notable.id)}
-                    selected={selectedNotable === notable.id}
-                  />
-                ))}
+              {getNotablesByBase(selectedBase)(
+                getNotablesByFilter(filterValue)(computedNotables)
+              ).map((notable) => (
+                <NotableBlock
+                  key={notable.id}
+                  id={notable.id}
+                  name={notable.name}
+                  img={notable.img}
+                  description={notable.description}
+                  notes={notable.notes}
+                  onClick={handleSelectNotable(notable.id)}
+                  selected={selectedNotable === notable.id}
+                />
+              ))}
             </Grid>
           </div>
         </Grid>
