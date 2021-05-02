@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { useDebounce } from 'use-debounce'
 
 import { clusterTypes, computedNotables } from 'data/data'
 import {
   getClusterBasesByType,
-  getNotablesByBase,
   getNotablesByFilter,
   getIsClusterBaseActive,
   getIsClusterTypeActive,
+  getTypeByBase,
 } from 'data/helpers'
 
 import Grid from 'components/grid/Grid'
@@ -18,10 +19,12 @@ import ClusterBlock from './components/cluster-block/ClusterBlock'
 
 import styles from './styles.module.css'
 
+const DEFAULT_CLUSTER_TYPE = '69'
+
 export default function Home() {
-  const [selectedType, setSelectedType] = useState('69')
-  const [selectedBase, setSelectedBase] = useState('')
-  const [selectedNotable, setSelectedNotable] = useState('')
+  const { isReady, query, push } = useRouter()
+
+  const [selectedType, setSelectedType] = useState('')
   const [filter, setFilter] = useState('')
   const [filterValue] = useDebounce(filter, 350)
 
@@ -30,21 +33,43 @@ export default function Home() {
   }
 
   const handleSelectBase = (base: string) => () => {
-    const newBase = selectedBase === base ? '' : base
-    setSelectedBase(newBase)
-
-    if (!newBase || !getIsClusterBaseActive(newBase, selectedNotable)) {
-      setSelectedNotable('')
-    }
+    push({
+      query: {
+        ...{
+          ...(query.base !== base && { base }),
+        },
+        ...{
+          ...(getIsClusterBaseActive(base, query.notable as string) && {
+            notable: query.notable,
+          }),
+        },
+      },
+    })
   }
 
-  const handleSelectNotable = (notable: string) => () => {
-    setSelectedNotable(selectedNotable === notable ? '' : notable)
+  const handleNotableSelect = (notable: string) => () => {
+    push({
+      query: {
+        ...query,
+        ...{
+          ...(query.notable !== notable && { notable }),
+        },
+      },
+    })
   }
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilter(e.target.value)
   }
+
+  if (!isReady) {
+    return null
+  }
+
+  const activeType =
+    selectedType || getTypeByBase(query.base as string) || DEFAULT_CLUSTER_TYPE
+  const selectedBase = (query.base as string) || ''
+  const selectedNotable = (query.notable as string) || ''
 
   return (
     <div className={styles.container}>
@@ -60,7 +85,7 @@ export default function Home() {
               {clusterTypes.map((type) => (
                 <ClusterBlock
                   key={type.id}
-                  selected={selectedType === type.id}
+                  selected={activeType === type.id}
                   active={getIsClusterTypeActive(type.id, selectedNotable)}
                   onClick={handleSelectType(type.id)}
                   text={type.text}
@@ -69,7 +94,7 @@ export default function Home() {
             </Grid>
 
             <Grid className={styles.grid}>
-              {getClusterBasesByType(selectedType).map((base) => (
+              {getClusterBasesByType(activeType).map((base) => (
                 <ClusterBlock
                   key={base.id_base}
                   selected={selectedBase === base.id_base}
@@ -91,20 +116,21 @@ export default function Home() {
             />
 
             <Grid className={styles.grid}>
-              {getNotablesByBase(selectedBase)(
-                getNotablesByFilter(filterValue)(computedNotables)
-              ).map((notable) => (
-                <NotableBlock
-                  key={notable.id}
-                  id={notable.id}
-                  name={notable.name}
-                  img={notable.img}
-                  description={notable.description}
-                  notes={notable.notes}
-                  onClick={handleSelectNotable(notable.id)}
-                  selected={selectedNotable === notable.id}
-                />
-              ))}
+              {getNotablesByFilter(filterValue)(computedNotables)
+                .sort((notable) => (notable.id === selectedNotable ? -1 : 1))
+                .map((notable) => (
+                  <NotableBlock
+                    id={notable.id}
+                    name={notable.name}
+                    img={notable.img}
+                    description={notable.description}
+                    notes={notable.notes}
+                    onClick={handleNotableSelect(notable.id)}
+                    selected={selectedNotable === notable.id}
+                    hidden={selectedBase && !notable.tiers[selectedBase]}
+                    key={notable.id}
+                  />
+                ))}
             </Grid>
           </div>
         </Grid>

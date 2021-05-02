@@ -1,3 +1,5 @@
+import classNames from 'classnames'
+
 import Grid from 'components/grid/Grid'
 import Text from 'components/text/Text'
 import Image from 'components/image/Image'
@@ -14,6 +16,7 @@ interface Props {
   notes?: string[]
   onClick: () => void
   selected: boolean
+  hidden: boolean
 }
 
 export default function NotableBlock({
@@ -23,9 +26,16 @@ export default function NotableBlock({
   notes,
   onClick,
   selected,
+  hidden,
 }: Props) {
   return (
-    <Block className={styles.block} onClick={onClick} selected={selected}>
+    <Block
+      className={classNames(styles.block, {
+        [styles.hidden]: hidden,
+      })}
+      onClick={onClick}
+      selected={selected}
+    >
       <div>
         <Grid>
           <Image src={img} size='big' />
