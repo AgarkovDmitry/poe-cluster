@@ -13,6 +13,10 @@
   margin-top: 0.5rem;
 }
 
+.hidden {
+  display: none;
+}
+
 @media (max-width: 600px) {
   .block {
     flex-basis: 100%;

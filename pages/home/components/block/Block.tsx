@@ -17,8 +17,6 @@ export default function Block({
   selected,
   active,
 }: BlockProps) {
-  const clickable = !!onClick
-
   return (
     <div
       className={classNames(
@@ -26,7 +24,6 @@ export default function Block({
         {
           [styles.active]: active,
           [styles.selected]: selected,
-          [styles.clickable]: clickable,
         },
         className
       )}

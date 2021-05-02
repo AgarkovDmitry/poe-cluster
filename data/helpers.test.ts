@@ -2,10 +2,10 @@ import { computedNotables } from './data'
 
 import {
   getClusterBasesByType,
-  getNotablesByBase,
   getNotablesByFilter,
   getIsClusterBaseActive,
   getIsClusterTypeActive,
+  getTypeByBase,
 } from './helpers'
 
 describe('data/helpers', () => {
@@ -32,20 +32,6 @@ describe('data/helpers', () => {
       const type = '71'
 
       expect(getClusterBasesByType(type).length).toEqual(21)
-    })
-  })
-
-  describe('getNotablesByBase', () => {
-    it('Should return empty array if type is not valid', () => {
-      const effect = 'invalid'
-
-      expect(getNotablesByBase(effect)(computedNotables)).toEqual([])
-    })
-
-    it('Should return non-empty array if type is valid', () => {
-      const effect = '169'
-
-      expect(getNotablesByBase(effect)(computedNotables).length).not.toEqual(0)
     })
   })
 
@@ -134,6 +120,23 @@ describe('data/helpers', () => {
       const notable = '244'
 
       expect(getIsClusterTypeActive(type, notable)).toEqual(true)
+    })
+  })
+
+  describe('getTypeByBase', () => {
+    it('Should return type, if base is valid', () => {
+      const base = '168'
+      const type = '69'
+
+      expect(getTypeByBase(base)).toEqual(type)
+    })
+  })
+  describe('getTypeByBase', () => {
+    it('Should not return type, if base is not valid', () => {
+      const base = '9999'
+      const type = undefined
+
+      expect(getTypeByBase(base)).toEqual(type)
     })
   })
 })
