@@ -3,9 +3,6 @@ import { computedClusterBases, computedNotables, Notable } from './data'
 export const getClusterBasesByType = (type: string) =>
   computedClusterBases.filter((base) => base.master_base === type)
 
-export const getNotablesByBase = (base: string) => (notables: Notable[]) =>
-  notables.filter((notable) => !base || !!notable.tiers[base])
-
 export const getNotablesByFilter = (filter: string) => (notables: Notable[]) =>
   notables.filter((notable) => {
     const parsedFilter = filter.trim().toLowerCase()
@@ -27,3 +24,6 @@ export const getIsClusterTypeActive = (type: string, notable: string) =>
   !!getClusterBasesByType(type).find((t) =>
     getIsClusterBaseActive(t.id_base, notable)
   )
+
+export const getTypeByBase = (id_base: string) =>
+  computedClusterBases.find((base) => base.id_base === id_base)?.master_base

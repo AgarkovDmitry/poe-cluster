@@ -440,4 +440,6 @@ export const notableImages = {
   '521': images.LightningResistNotable,
   '522': images.AxeandSwordDamage,
   '523': images.FireDamageOverTimeNotable,
+  '3834': images.PhysicalDamageOverTimeNotable,
+  '3835': images.PhysicalDamageOverTimeNotable,
 }

@@ -4,6 +4,7 @@
     border-color 0.15s ease;
 
   background-color: #343434;
+  cursor: pointer;
 }
 
 .block:hover,
@@ -14,10 +15,6 @@
 
 .active {
   background-color: #533e22;
-}
-
-.clickable {
-  cursor: pointer;
 }
 
 .selected {
