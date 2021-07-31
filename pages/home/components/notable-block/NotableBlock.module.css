@@ -1,16 +1,44 @@
 .block {
   flex-basis: calc(50% - 0.25rem);
   margin: 0 0.25rem 0.25rem 0;
-  padding: 0.5rem;
+}
+
+.header {
+  border-bottom: 1px solid #808080;
+}
+
+.image {
+  margin: 0.5rem;
 }
 
 .title {
   margin: auto;
   margin-left: 1rem;
+  flex: 1;
 }
 
-.subsection {
-  margin-top: 0.5rem;
+.craft {
+  width: 3.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #808080;
+}
+
+.craftSubsection {
+  flex-basis: calc(100% / 3);
+  border-bottom: 1px solid #808080;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.craft .craftSubsection:last-child {
+  border-bottom: 0;
+}
+
+.description {
+  margin: 0.5rem 0.5rem;
 }
 
 .hidden {
