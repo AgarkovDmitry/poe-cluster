@@ -1,5 +1,6 @@
 import rawData from './raw.json'
 import { notableImages, baseImages } from './notable-images'
+import { Notable } from './interfaces'
 
 export const rawClusterBases = rawData.bases.seq.filter(
   (base) => base.id_bgroup === '12'
@@ -31,20 +32,16 @@ export const computedClusterBases = rawClusterBases.map((base) => ({
 
 type Affix = 'prefix' | 'suffix'
 
-export interface Notable {
-  id: string
-  name: string
-  affix: Affix
-  img: string
-  description: string[]
-
-  tiers: unknown
-  notes?: string[]
-}
-
 export const computedNotables: Notable[] = rawNotableSkills.map((skill) => {
   const description = JSON.parse(rawData.mdefs[skill.id_modifier])
-  const tiers = rawData.tiers[skill.id_modifier]
+  const rawTiers = rawData.tiers[skill.id_modifier]
+
+  const tiers = Object.keys(rawTiers).reduce(
+    (res, key) => ({ ...res, [key]: rawTiers[key][0] }),
+    {}
+  )
+
+  const ilvl = tiers[Object.keys(tiers)[0]].ilvl
 
   return {
     description,
@@ -54,5 +51,6 @@ export const computedNotables: Notable[] = rawNotableSkills.map((skill) => {
     name: skill.name_modifier.split('1 Added Passive Skill is ')[1],
     id: skill.id_modifier,
     affix: skill.affix as Affix,
+    ilvl,
   }
 })
