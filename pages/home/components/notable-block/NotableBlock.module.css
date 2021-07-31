@@ -45,6 +45,10 @@
   display: none;
 }
 
+.hidden {
+  display: none;
+}
+
 @media (max-width: 600px) {
   .block {
     flex-basis: 100%;

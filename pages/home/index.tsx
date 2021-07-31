@@ -40,11 +40,14 @@ export default function Home() {
     return null
   }
 
-  const queryBase = query.base as string
   const queryNotable = (query.notable as string) || ''
 
+  if (!isReady) {
+    return null
+  }
+
   const activeType =
-    selectedType || getTypeByBase(queryBase) || DEFAULT_CLUSTER_TYPE
+    selectedType || getTypeByBase(query.base as string) || DEFAULT_CLUSTER_TYPE
 
   return (
     <div className={styles.container}>
