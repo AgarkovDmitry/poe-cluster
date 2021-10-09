@@ -28,6 +28,8 @@ export default function Home() {
   const [filter, setFilter] = useState('')
   const [filterValue] = useDebounce(filter, 350)
 
+  const queryNotable = (query.notable as string) || ''
+
   const handleSelectType = (type: string) => () => {
     setSelectedType(type)
   }
@@ -35,12 +37,6 @@ export default function Home() {
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilter(e.target.value)
   }
-
-  if (!isReady) {
-    return null
-  }
-
-  const queryNotable = (query.notable as string) || ''
 
   if (!isReady) {
     return null

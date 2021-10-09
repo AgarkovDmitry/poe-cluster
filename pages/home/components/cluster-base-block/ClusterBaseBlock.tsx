@@ -12,32 +12,49 @@ interface Props {
 export default function ClusterBaseBlock({ base }: Props) {
   const { query, push } = useRouter()
 
+  const queryBase = (query.base as string) || ''
+  const queryNotable = (query.notable as string) || ''
+
+  if (!base) {
+    return null
+  }
+
+  const { id_base, name_base, img } = base
+  const selected = queryBase === id_base
+  const isClusterBaseActive = getIsClusterBaseActive(
+    id_base,
+    queryNotable
+  )
+
   const handleSelectBase = (base: string) => () => {
+    const isClusterBaseActive = getIsClusterBaseActive(
+      base,
+      queryNotable
+    )
+    const isNewBase = queryBase !== base
+
     push({
       query: {
         ...{
-          ...(query.base !== base && { base }),
+          ...(isNewBase && { base }),
         },
         ...{
-          ...(getIsClusterBaseActive(base, query.notable as string) && {
-            notable: query.notable,
+          ...(isClusterBaseActive && {
+            notable: queryNotable,
           }),
         },
       },
     })
   }
 
-  const queryBase = (query.base as string) || ''
-  const queryNotable = (query.notable as string) || ''
-
   return (
     <ClusterBlock
-      key={base.id_base}
-      selected={queryBase === base.id_base}
-      active={getIsClusterBaseActive(base.id_base, queryNotable)}
-      onClick={handleSelectBase(base.id_base)}
-      img={base.img}
-      text={base.name_base}
+      key={id_base}
+      selected={selected}
+      active={isClusterBaseActive}
+      onClick={handleSelectBase(id_base)}
+      img={img}
+      text={name_base}
     />
   )
 }
