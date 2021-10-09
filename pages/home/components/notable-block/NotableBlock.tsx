@@ -21,17 +21,23 @@ export default function NotableBlock({ notable }: Props) {
   const queryBase = query.base as string
   const queryNotable = (query.notable as string) || ''
 
+  if (!notable) {
+    return null
+  }
+
   const { id, name, affix, ilvl, img, description, tiers } = notable
   const weighting = tiers[queryBase]?.weighting
   const selected = queryNotable === id
-  const hidden = queryBase && !notable.tiers[queryBase]
+  const hidden = queryBase && !tiers[queryBase]
 
   const handleClick = () => {
+    const isNewNotable = query.notable !== id
+
     push({
       query: {
         ...query,
         ...{
-          ...(query.notable !== notable.id && { notable: notable.id }),
+          ...(isNewNotable && { notable: id }),
         },
       },
     })
