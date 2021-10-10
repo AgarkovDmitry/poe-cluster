@@ -1,3 +1,5 @@
+export type Affix = 'prefix' | 'suffix'
+
 interface Tier {
   ilvl: string
   weighting: string
