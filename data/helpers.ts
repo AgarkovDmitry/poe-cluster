@@ -17,9 +17,8 @@ export const getNotablesByFilter = (filter: string) => (notables: Notable[]) =>
   })
 
 export const getIsClusterBaseActive = (base: string, notable: string) =>
-  !!computedNotables.find(
-    (computedNotable) => notable === computedNotable.id
-  )?.tiers[base]
+  !!computedNotables.find((computedNotable) => notable === computedNotable.id)
+    ?.tiers[base]
 
 export const getIsClusterTypeActive = (type: string, notable: string) =>
   !!getClusterBasesByType(type).find((t) =>

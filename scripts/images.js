@@ -1,4 +1,4 @@
-export const images = {
+const images = {
   IncreasedAttackDamageNotable:
     'https://web.poecdn.com/public/news/2020-03-10/passives/IncreasedAttackDamageNotable.png',
   DualWieldingDamage:
@@ -99,7 +99,7 @@ export const images = {
     'https://web.poecdn.com/public/news/2020-03-10/passives/IncreasedPhysicalDamage.png',
 }
 
-export const baseImages = {
+const baseImages = {
   '125': images.IncreasedMaximumLifeNotable,
   '126': images.EnergyShieldNotable,
   '127': images.MaxManaNotable,
@@ -152,7 +152,7 @@ export const baseImages = {
   '177': images.IncreasedMinionDamageNotable,
 }
 
-export const notableImages = {
+const notableImages = {
   '237': images.IncreasedMaximumLifeNotable,
   '238': images.HoldingShieldDamage,
   '239': images.DodgeAtksNotable,
@@ -442,4 +442,9 @@ export const notableImages = {
   '523': images.FireDamageOverTimeNotable,
   '3834': images.PhysicalDamageOverTimeNotable,
   '3835': images.PhysicalDamageOverTimeNotable,
+}
+
+module.exports = {
+  notableImages,
+  baseImages,
 }
