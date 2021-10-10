@@ -10,7 +10,7 @@
     "prettier-check": "prettier --check \"*\"",
     "ts-check": "tsc --noEmit",
     "generate-cluster-data": "node scripts/generate-cluster-data",
-    "prebuild": "yarn generate-cluster-data"
+    "postinstall": "yarn generate-cluster-data"
   },
   "dependencies": {
     "axios": "^0.22.0",
