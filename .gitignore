@@ -34,4 +34,4 @@ yarn-error.log*
 .vercel
 
 #data
-data/data.json
+data/cluster-data.json

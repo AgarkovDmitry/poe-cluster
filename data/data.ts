@@ -1,6 +1,6 @@
 import { Notable, ClusterBase, ClusterType } from './interfaces'
 
-import data from './data.json'
+import data from './cluster-data.json'
 
 export const clusterTypes = (data.types as unknown) as ClusterType[]
 

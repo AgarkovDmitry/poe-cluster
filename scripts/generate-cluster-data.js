@@ -73,7 +73,7 @@ axios
   })
   .then((data) => {
     return new Promise((_, reject) => {
-      const fileName = './data/data.json'
+      const fileName = './data/cluster-data.json'
 
       fs.writeFile(fileName, JSON.stringify(data), (err) => {
         if (err) reject(err)
