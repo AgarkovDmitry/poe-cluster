@@ -30,5 +30,6 @@ export interface Notable {
   img: string
   ilvl: string
   description: string[]
+  notes: string[]
   tiers: Record<string, Tier>
 }

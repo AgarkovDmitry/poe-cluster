@@ -19,7 +19,7 @@ describe('data/helpers', () => {
     it('Should return non-empty array if type is valid', () => {
       const type = '70'
 
-      expect(getClusterBasesByType(type).length).toEqual(12)
+      expect(getClusterBasesByType(type).length).toEqual(14)
     })
 
     it('Should return non-empty array if type is valid', () => {

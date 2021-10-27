@@ -17,7 +17,7 @@ interface Props {
 
 export default function NotableBlock({ notable }: Props) {
   const { query, push } = useRouter()
-  
+
   const queryBase = query.base as string
   const queryNotable = (query.notable as string) || ''
 
@@ -25,7 +25,7 @@ export default function NotableBlock({ notable }: Props) {
     return null
   }
 
-  const { id, name, affix, ilvl, img, description, tiers } = notable
+  const { id, name, affix, ilvl, img, description, tiers, notes } = notable
   const weighting = tiers[queryBase]?.weighting
   const selected = queryNotable === id
   const hidden = queryBase && !tiers[queryBase]
@@ -83,6 +83,15 @@ export default function NotableBlock({ notable }: Props) {
           </Text>
         ))}
       </div>
+      {selected && (
+        <div className={classNames(styles.description, styles.notes)}>
+          {notes?.map((line) => (
+            <Text key={line} fontSize='medium'>
+              {line}
+            </Text>
+          ))}
+        </div>
+      )}
     </Block>
   )
 }
