@@ -18,6 +18,10 @@
   margin-top: 1rem;
 }
 
+.grid:empty {
+  margin-top: 0;
+}
+
 .basesBlock {
   flex-basis: calc(100% / 3);
 }

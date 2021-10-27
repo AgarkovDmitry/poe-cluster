@@ -69,7 +69,31 @@ export default function Home() {
 
             <Grid className={styles.grid}>
               {getClusterBasesByType(activeType).map((base) => (
-                <ClusterBaseBlock base={base} key={base.id_base} />
+                <ClusterBaseBlock
+                  base={base}
+                  key={base.id_base}
+                  display='selected'
+                />
+              ))}
+            </Grid>
+
+            <Grid className={styles.grid}>
+              {getClusterBasesByType(activeType).map((base) => (
+                <ClusterBaseBlock
+                  base={base}
+                  key={base.id_base}
+                  display='active'
+                />
+              ))}
+            </Grid>
+
+            <Grid className={styles.grid}>
+              {getClusterBasesByType(activeType).map((base) => (
+                <ClusterBaseBlock
+                  base={base}
+                  key={base.id_base}
+                  display='default'
+                />
               ))}
             </Grid>
           </div>
@@ -84,7 +108,15 @@ export default function Home() {
 
             <Grid className={styles.grid}>
               {getNotablesByFilter(filterValue)(computedNotables)
-                .sort((notable) => (notable.id === queryNotable ? -1 : 1))
+                .filter((notable) => notable.id === queryNotable)
+                .map((notable) => (
+                  <NotableBlock notable={notable} key={notable.id} />
+                ))}
+            </Grid>
+
+            <Grid className={styles.grid}>
+              {getNotablesByFilter(filterValue)(computedNotables)
+                .filter((notable) => notable.id !== queryNotable)
                 .map((notable) => (
                   <NotableBlock notable={notable} key={notable.id} />
                 ))}
