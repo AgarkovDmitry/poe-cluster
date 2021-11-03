@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useDebounce } from 'use-debounce'
 
-import { clusterTypes, computedNotables } from 'data/data'
+import { clusterTypes } from 'data/data'
 import {
   getClusterBasesByType,
   getNotablesByFilter,
@@ -44,6 +44,8 @@ export default function Home() {
 
   const activeType =
     selectedType || getTypeByBase(query.base as string) || DEFAULT_CLUSTER_TYPE
+
+  const filteredNotables = getNotablesByFilter(filterValue)
 
   return (
     <div className={styles.container}>
@@ -107,7 +109,7 @@ export default function Home() {
             />
 
             <Grid className={styles.grid}>
-              {getNotablesByFilter(filterValue)(computedNotables)
+              {filteredNotables
                 .filter((notable) => notable.id === queryNotable)
                 .map((notable) => (
                   <NotableBlock notable={notable} key={notable.id} />
@@ -115,7 +117,7 @@ export default function Home() {
             </Grid>
 
             <Grid className={styles.grid}>
-              {getNotablesByFilter(filterValue)(computedNotables)
+              {filteredNotables
                 .filter((notable) => notable.id !== queryNotable)
                 .map((notable) => (
                   <NotableBlock notable={notable} key={notable.id} />

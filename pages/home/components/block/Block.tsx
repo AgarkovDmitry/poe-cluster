@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import { ReactNode } from 'react'
 
 import styles from './Block.module.css'
 
@@ -7,7 +8,7 @@ interface BlockProps {
   selected?: boolean
   active?: boolean
   onClick?: () => void
-  children?: unknown
+  children?: ReactNode
 }
 
 export default function Block({
