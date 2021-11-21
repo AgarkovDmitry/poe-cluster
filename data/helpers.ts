@@ -1,20 +1,19 @@
 import { computedClusterBases, computedNotables } from './data'
-import { Notable } from './interfaces'
 
 export const getClusterBasesByType = (type: string) =>
   computedClusterBases.filter((base) => base.master_base === type)
 
-export const getNotablesByFilter = (filter: string) => (notables: Notable[]) =>
-  notables.filter((notable) => {
-    const parsedFilter = filter.trim().toLowerCase()
+export const getNotablesByFilter = (filter: string) => {
+  const parsedFilter = filter.trim().toLowerCase()
 
-    return (
+  return computedNotables.filter(
+    (notable) =>
       notable.name.toLowerCase().includes(parsedFilter) ||
       notable.description.find((line: string) =>
         line.toLowerCase().includes(parsedFilter)
       )
-    )
-  })
+  )
+}
 
 export const getIsClusterBaseActive = (base: string, notable: string) =>
   !!computedNotables.find((computedNotable) => notable === computedNotable.id)

@@ -24,14 +24,13 @@ export default function ClusterBaseBlock({ base, display }: Props) {
   const selected = queryBase === id_base
   const active = getIsClusterBaseActive(id_base, queryNotable)
 
-  const handleSelectBase = (base: string) => () => {
-    const active = getIsClusterBaseActive(base, queryNotable)
-    const isNewBase = queryBase !== base
+  const handleSelectBase = () => {
+    const isNewBase = queryBase !== id_base
 
     push({
       query: {
         ...{
-          ...(isNewBase && { base }),
+          ...(isNewBase && { base: id_base }),
         },
         ...{
           ...(active && {
@@ -59,7 +58,7 @@ export default function ClusterBaseBlock({ base, display }: Props) {
       key={id_base}
       selected={selected}
       active={active}
-      onClick={handleSelectBase(id_base)}
+      onClick={handleSelectBase}
       img={img}
       text={name_base}
     />

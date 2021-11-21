@@ -39,7 +39,7 @@ describe('data/helpers', () => {
     it('Should return full array if no filter provided', () => {
       const effect = ''
 
-      expect(getNotablesByFilter(effect)(computedNotables)).toEqual(
+      expect(getNotablesByFilter(effect)).toEqual(
         computedNotables
       )
     })
@@ -47,19 +47,19 @@ describe('data/helpers', () => {
     it('Should return array with 1 element, if filter is name', () => {
       const effect = 'Adrenaline'
 
-      expect(getNotablesByFilter(effect)(computedNotables).length).toEqual(1)
+      expect(getNotablesByFilter(effect).length).toEqual(1)
     })
 
     it('Should return array with 1 element, if filter is name in wrong case', () => {
       const effect = 'adrenaline'
 
-      expect(getNotablesByFilter(effect)(computedNotables).length).toEqual(1)
+      expect(getNotablesByFilter(effect).length).toEqual(1)
     })
 
     it('Should return array with 1 element, if filter is name with spaces', () => {
       const effect = '           adrenaline  '
 
-      expect(getNotablesByFilter(effect)(computedNotables).length).toEqual(1)
+      expect(getNotablesByFilter(effect).length).toEqual(1)
     })
   })
 

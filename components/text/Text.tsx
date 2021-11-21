@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import { ReactNode } from 'react'
 
 import styles from './Text.module.css'
 
@@ -7,7 +8,7 @@ interface TextProps {
   italic?: boolean
   bold?: boolean
   color?: 'title' | 'hint'
-  children?: unknown
+  children?: ReactNode
   className?: string
 }
 
